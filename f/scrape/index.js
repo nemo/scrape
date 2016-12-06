@@ -45,7 +45,12 @@ module.exports = (params, callback) => {
             if (query && query.length) {
                 result.query = query;
                 try {
-                    result.query_value = $(query).text();
+                    var matches = $(query);
+                    if (matches.length)
+                        result.query_value = matches.toArray().map((el) => ($(el).text()))
+                    else
+                        result.query_value = mtaches.text();
+                    debugger;
                 } catch (e) {
                     result.query_error = e && e.message || e;
                 }
