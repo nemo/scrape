@@ -1,0 +1,17 @@
+{
+  "name": "scrape",
+  "description": "Function",
+  "args": [
+    "URL to scrape",
+    "query to scrape from raw HTML (optional)",
+    "User Agent to use (optional)"
+  ],
+  "kwargs": {
+    "url": "URL to scrape",
+    "query": "Query to scrape from raw HTML (optional)",
+    "userAgent": "User Agent to use (optional)"
+  },
+  "http": {
+    "headers": {}
+  }
+}

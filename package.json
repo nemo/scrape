@@ -1,0 +1,19 @@
+{
+  "name": "scrape",
+  "version": "0.1.1",
+  "description": "HTML Metadata and content scraper",
+  "author": "nemo <nima@halfmoon.ws>",
+  "main": "f/scrape/index.js",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "html-metadata": "^1.5.0",
+    "request": "^2.79.0"
+  },
+  "private": true,
+  "stdlib": {
+    "name": "nemo/scrape",
+    "defaultFunction": "scrape",
+    "timeout": 10000,
+    "publish": true
+  }
+}
