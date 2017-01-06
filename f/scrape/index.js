@@ -49,7 +49,7 @@ module.exports = (params, callback) => {
                     if (matches.length)
                         result.query_value = matches.toArray().map((el) => ($(el).text()))
                     else
-                        result.query_value = mtaches.text();
+                        result.query_value = matches.text();
                     debugger;
                 } catch (e) {
                     result.query_error = e && e.message || e;
