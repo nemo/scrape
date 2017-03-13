@@ -14,7 +14,7 @@ You can either use the ready service that's deployed on stdlib [here](http://std
 For example, a simple scrape to pick up my own email address from Github (and a bunch of extra metadata):
 
 ```bash
-f nemo/scrape --url https://github.com/nemo --query "li[itemprop='email'] a"
+lib nemo.scrape --url https://github.com/nemo --query "li[itemprop='email'] a"
 ```
 
 ```javascript
