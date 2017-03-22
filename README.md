@@ -1,5 +1,5 @@
 # Distributed Scraper
-[![stdlib service](http://badge.stdlib.com/service/?service=scrape&username=nemo&version=0.1.3)](https://stdlib.com/services/nemo/scrape)
+[![stdlib service](http://badge.stdlib.com/service/?service=scrape&username=nemo&version=0.1.7)](https://stdlib.com/services/nemo/scrape)
 
 This is a scraper function that automatically pulls in [metadata](https://github.com/wikimedia/html-metadata) from the page, as well as supports simple HTML querying using [cheerio](https://github.com/cheeriojs/cheerio).
 

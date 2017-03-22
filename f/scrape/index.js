@@ -1,6 +1,8 @@
-var request = require('request');
-var cheerio = require('cheerio');
-var parseAll = require('html-metadata').parseAll;
+const _ = require('lodash');
+const request = require('request');
+const cheerio = require('cheerio');
+const parseAll = require('html-metadata').parseAll;
+
 
 /**
 * Your function call
@@ -28,35 +30,56 @@ module.exports = (params, callback) => {
     };
 
     request(options, function(err, response, body) {
-        if (err) return callback(err)
-        if (response.statusCode !== 200) return callback(null, body);
-        var $ = cheerio.load(body);
+      if (err) return callback(err)
+      if (response.statusCode !== 200) return callback(null, body);
+      var $ = cheerio.load(body);
 
-        parseAll($, (err, metadata) => {
-            if (err) return callback(err);
+      parseAll($, (err, metadata) => {
+        if (err) return callback(err);
 
-            var result = {
-                metadata: metadata
-            };
+        var result = {
+            metadata: metadata
+        };
 
-            result.url = url;
+        function performQuery(q) {
+          if (!q) return null;
+          if (!q.length) return null;
 
+          var matches = $(q);
+          if (matches.length)
+            return matches.toArray().map((el) => ($(el).text()))
+          else
+            return matches.text();
+        }
 
-            if (query && query.length) {
-                result.query = query;
-                try {
-                    var matches = $(query);
-                    if (matches.length)
-                        result.query_value = matches.toArray().map((el) => ($(el).text()))
-                    else
-                        result.query_value = matches.text();
-                    debugger;
-                } catch (e) {
-                    result.query_error = e && e.message || e;
-                }
+        result.url = url;
+
+        if (_.isArray(query)) {
+          result.query = [];
+          result.query_value = [];
+          result.query_error = [];
+
+          _.each(query, (q) => {
+            try {
+              let data = performQuery(q);
+              result.query.push(q);
+              result.query_value.push(data);
             }
+            catch (e) {
+              result.query_error.push(e && e.message || e)
+            };
+          });
 
-            return callback(null, result);
-        });
+        } else if (query && query.length) {
+          result.query = query;
+          try {
+            result.query_value = performQuery(query);
+          } catch (e) {
+            result.query_error = e && e.message || e;
+          }
+        }
+
+        return callback(null, result);
+      });
     });
 };

@@ -8,7 +8,7 @@
   ],
   "kwargs": {
     "url": "URL to scrape",
-    "query": "Query to scrape from raw HTML (optional)",
+    "query": "Query to scrape from raw HTML (optional). Can be an array of queries.",
     "userAgent": "User Agent to use (optional)"
   },
   "http": {
