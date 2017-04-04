@@ -43,13 +43,20 @@ module.exports = (params, callback) => {
 
         function performQuery(q) {
           if (!q) return null;
-          if (!q.length) return null;
+          if (!q.length && !_.isObject(q)) return null;
+          var queryMatcher = q;
 
-          var matches = $(q);
-          if (matches.length)
-            return matches.toArray().map((el) => ($(el).text()))
-          else
-            return matches.text();
+          if (_.isObject(q)) {
+            queryMatcher = q.match;
+          }
+
+          var matches = $(queryMatcher);
+          return (matches.length ? matches.toArray() : [matches]).map((el) => {
+            if (_.isObject(q) && q.attr) {
+              return $(el).attr(q.attr);
+            }
+            return $(el).text();
+          })
         }
 
         result.url = url;

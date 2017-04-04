@@ -1,6 +1,6 @@
 {
   "name": "scrape",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "HTML Metadata and content scraper",
   "author": "nemo <nima@halfmoon.ws>",
   "main": "f/scrape/index.js",
